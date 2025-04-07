@@ -1,0 +1,28 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+      <table class="table table-hover">
+         <thead class="thead-default">
+            <tr>
+               <th>Nome</th>
+               <th>Ano Laçamento</th>
+               <th>Desenvolvedora</th>
+               <th>Genero</th>
+               <th>Plataforma</th>
+            </tr>
+         </thead>
+         
+         <tbody class="table-group-divider">
+            {% for jogo in jogos %}
+            <tr>
+               <td>{{ jogo.nome.title() }}</td>
+               <td>{{ jogo.ano }}</td>
+               <td>{{ jogo.desenvolvedora.title() }}</td>
+               <td>{{ jogo.genero.title() }}</td>
+               <td>{{ jogo.plataforma.upper() }}</td>
+            </tr>
+           {% endfor %}
+         </tbody>
+
+      </table>
+{% endblock %}

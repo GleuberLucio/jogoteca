@@ -1,0 +1,29 @@
+{% extends "template.html" %}
+{% block conteudo %}
+ 
+      <form method="post" action="{{url_for('criar') }}" class="formulario">
+        <fieldset>
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="categoria">Ano</label>
+            <input type="text" id="ano" name="ano" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="desenvolvedora">Desenvolvedora</label>
+            <input type="text" id="desenvolvedora" name="desenvolvedora" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="genero">Genero</label>
+            <input type="text" id="genero" name="genero" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="plataforma">Plataforma</label>
+            <input type="text" id="plataforma" name="plataforma" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary btn-salvar">Salvar</button>
+        </fieldset>
+      </form>
+{% endblock %}
