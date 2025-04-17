@@ -1,22 +1,19 @@
+from sqlalchemy import Column, Integer, String
+from db_init import db
 
-class Jogo:
-    def __init__(self, nome:str, ano:int, desenvolvedora:str, genero:str, plataforma:str, capa:str=None):
-        """
-        Inicializa um objeto Jogo com os atributos fornecidos.
-        :param nome: Nome do jogo
-        :param ano: Ano de lançamento do jogo
-        :param desenvolvedora: Nome da desenvolvedora do jogo
-        :param genero: Gênero do jogo
-        :param plataforma: Plataforma do jogo
-        :param capa: Caminho para a imagem da capa do jogo
-        """
-        
-        self.nome = nome
-        self.ano = ano
-        self.desenvolvedora = desenvolvedora
-        self.genero = genero
-        self.plataforma = plataforma
-        self.capa = capa
-
+class Jogo(db.Model):
+    """ Classe que representa um jogo na aplicação."""
+    __tablename__ = 'jogos'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nome = db.Column(db.String(50), nullable=False)
+    ano = db.Column(db.String(4), nullable=False)
+    desenvolvedora = db.Column(db.String(40), nullable=False)
+    genero = db.Column(db.String(20), nullable=False)
+    plataforma = db.Column(db.String(20), nullable=False)
+    capa = db.Column(db.String(300), nullable=True)
+    
+    def __repr__(self):
+        return f"<Jogo id={self.id}, nome={self.nome}, ano={self.ano}>"
+    
     def __str__(self):
         return f"Nome: {self.nome}, Ano: {self.ano}, Desenvolvedora: {self.desenvolvedora}, Genero: {self.genero}, Plataforma: {self.plataforma}"

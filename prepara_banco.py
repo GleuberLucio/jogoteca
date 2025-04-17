@@ -33,16 +33,17 @@ TABLES['Jogos'] = ('''
       `desenvolvedora` varchar(40) NOT NULL,
       `genero` varchar(20) NOT NULL,
       `plataforma` varchar(20) NOT NULL,
-      `capa` varchar(150) NOT NULL,
+      `capa` varchar(300),
       PRIMARY KEY (`id`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
 
 TABLES['Usuarios'] = ('''
       CREATE TABLE `usuarios` (
-      `nome` varchar(20) NOT NULL,
-      `nickname` varchar(8) NOT NULL,
-      `senha` varchar(30) NOT NULL,
-      PRIMARY KEY (`nickname`)
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `nome` varchar(50) NOT NULL,
+      `nickname` varchar(20) NOT NULL UNIQUE,
+      `senha` varchar(100) NOT NULL,
+      PRIMARY KEY (`id`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
 
 for tabela_nome in TABLES:
@@ -58,19 +59,30 @@ for tabela_nome in TABLES:
       else:
             print('OK')
 
-
 # inserindo usuarios
 usuario_sql = 'INSERT INTO usuarios (nome, nickname, senha) VALUES (%s, %s, %s)'
 usuarios = [
       ("Gleuber Lucio", "Glbad", "123"),
       ("Thalyta Machado", "Gatinha", "321"),
 ]
-cursor.executemany(usuario_sql, usuarios)
+try:
+    cursor.executemany(usuario_sql, usuarios)
+except mysql.connector.Error as err:
+    print(f"Erro ao inserir usuários: {err}")
 
-cursor.execute('select * from jogoteca.usuarios')
-print(' -------------  Usuários:  -------------')
-for user in cursor.fetchall():
-    print(user[1])
+cursor.execute('INSERT INTO usuarios (nome, nickname, senha) VALUES (%s, %s, %s)', ('Nome', 'Nickname', 'Senha'))
+
+try:
+    cursor.execute('select * from jogoteca.usuarios')
+    usuarios = cursor.fetchall()
+    if usuarios:
+        print(' -------------  Usuários:  -------------')
+        for user in usuarios:
+            print(user[1])
+    else:
+        print("Nenhum usuário encontrado.")
+except mysql.connector.Error as err:
+    print(f"Erro ao consultar usuários: {err}")
 
 # inserindo jogos
 jogos_sql = 'INSERT INTO jogos (nome, ano, desenvolvedora, genero, plataforma, capa) VALUES (%s, %s, %s, %s, %s, %s)'
@@ -85,15 +97,24 @@ jogos = [
       ('Metal Gear Solid', '1998', 'Konami', 'Ação / Stealth', 'PlayStation 1', 'https://upload.wikimedia.org/wikipedia/en/6/6e/Metal_Gear_Solid_cover_art.png'),
       ('Crash Bandicoot 3: Warped', '1998', 'Naughty Dog', 'Plataforma', 'PlayStation 1', 'https://upload.wikimedia.org/wikipedia/en/3/3c/Crash_Bandicoot_3_Warped.jpg')
 ]
-cursor.executemany(jogos_sql, jogos)
+try:
+    cursor.executemany(jogos_sql, jogos)
+except mysql.connector.Error as err:
+    print(f"Erro ao inserir jogos: {err}")
 
-cursor.execute('select * from jogoteca.jogos')
-print(' -------------  Jogos:  -------------')
-for jogo in cursor.fetchall():
-    print(jogo[1])
+try:
+    cursor.execute('select * from jogoteca.jogos')
+    print(' -------------  Jogos:  -------------')
+    for jogo in cursor.fetchall():
+        print(jogo[1])
+except mysql.connector.Error as err:
+    print(f"Erro ao consultar jogos: {err}")
 
-# commitando se não nada tem efeito
-conn.commit()
-
-cursor.close()
-conn.close()
+try:
+    # Código de criação e inserção
+    conn.commit()
+except mysql.connector.Error as err:
+    print(f"Erro: {err}")
+finally:
+    cursor.close()
+    conn.close()

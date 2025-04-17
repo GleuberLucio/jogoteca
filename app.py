@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, session, flash, url_for
+from db_init import db
 from jogo import Jogo
-from flask_sqlalchemy import SQLAlchemy
+from usuario import Usuario
+
 
 app = Flask(__name__)
 
@@ -16,11 +18,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = \
         banco='jogoteca'
     )
     
-db = SQLAlchemy(app)
+db.init_app(app)
 
 
 @app.route('/')
 def index():
+    jogos = Jogo.query.order_by(Jogo.id)
     return render_template('lista.html', titulo='Jogos', jogos=jogos)
 
 @app.route('/novo')
