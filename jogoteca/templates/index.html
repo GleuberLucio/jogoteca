@@ -1,0 +1,184 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<div class="container-fluid p-0">
+    <!-- Hero Section -->
+    <section class="bg-primary text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Gerencie sua coleção de
+                        jogos com facilidade</h1>
+                    <p class="lead mb-4">Uma plataforma simples e poderosa para
+                        catalogar, organizar e compartilhar sua coleção de
+                        jogos.</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{{ url_for('usuario.login') }}"
+                            class="btn btn-light btn-lg px-4">Login</a>
+                        <a href="{{ url_for('usuario.registrar') }}"
+                            class="btn btn-outline-light btn-lg px-4">Registrar</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <img
+                        src="https://placehold.co/600x400/5D87FF/FFFFFF/png?text=Jogoteca"
+                        class="img-fluid rounded shadow"
+                        alt="Jogoteca Dashboard">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Recursos que você vai adorar</h2>
+                <p class="lead text-muted">Gerencie sua biblioteca de jogos com
+                    ferramentas poderosas e intuitivas</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div
+                                class="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-3">
+                                <i
+                                    class="bi bi-collection fs-3 text-primary"></i>
+                            </div>
+                            <h4>Catálogo Completo</h4>
+                            <p class="text-muted">Organize todos seus jogos com
+                                informações detalhadas como desenvolvedora, ano
+                                e plataforma.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div
+                                class="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-3">
+                                <i class="bi bi-search fs-3 text-primary"></i>
+                            </div>
+                            <h4>Busca Inteligente</h4>
+                            <p class="text-muted">Encontre rapidamente qualquer
+                                jogo em sua coleção com nossa busca avançada por
+                                nome, gênero ou plataforma.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div
+                                class="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-3">
+                                <i class="bi bi-share fs-3 text-primary"></i>
+                            </div>
+                            <h4>Compartilhamento</h4>
+                            <p class="text-muted">Compartilhe sua coleção com
+                                amigos e descubra novos jogos para adicionar à
+                                sua biblioteca.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Como Funciona</h2>
+                <p class="lead text-muted">Três passos simples para organizar
+                    sua coleção</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="text-center mb-4">
+                        <div
+                            class="bg-primary rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
+                            style="width: 50px; height: 50px;">
+                            <span class="text-white fw-bold">1</span>
+                        </div>
+                        <h4>Cadastre-se</h4>
+                        <p class="text-muted">Crie sua conta em segundos e
+                            comece a usar imediatamente</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center mb-4">
+                        <div
+                            class="bg-primary rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
+                            style="width: 50px; height: 50px;">
+                            <span class="text-white fw-bold">2</span>
+                        </div>
+                        <h4>Adicione seus Jogos</h4>
+                        <p class="text-muted">Cadastre facilmente os jogos da
+                            sua coleção com todos os detalhes</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center mb-4">
+                        <div
+                            class="bg-primary rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
+                            style="width: 50px; height: 50px;">
+                            <span class="text-white fw-bold">3</span>
+                        </div>
+                        <h4>Gerencie e Divirta-se</h4>
+                        <p class="text-muted">Organize por categorias, marque
+                            seus favoritos e compartilhe com amigos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">O que nossos usuários dizem</h2>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4 p-md-5">
+                            <div class="d-flex flex-column flex-md-row gap-4">
+                                <img
+                                    src="https://placehold.co/100/5D87FF/FFFFFF/png?text=User"
+                                    class="rounded-circle" width="80"
+                                    height="80" alt="Usuário">
+                                <div>
+                                    <p
+                                        class="lead mb-3">"Finalmente uma forma prática de organizar minha coleção de jogos! Já cadastrei mais de 200 títulos e o sistema é super fácil de usar."</p>
+                                    <h5 class="mb-1">Carlos Silva</h5>
+                                    <p class="text-muted small">Colecionador de
+                                        jogos desde 1995</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-3">Pronto para organizar sua coleção?</h2>
+            <p class="lead mb-4">Comece agora mesmo a catalogar seus jogos
+                favoritos</p>
+            <a href="{{ url_for('jogo.novo') }}"
+                class="btn btn-light btn-lg px-4 me-2">Começar Agora</a>
+            <a href="{{ url_for('jogo.index') }}"
+                class="btn btn-outline-light btn-lg px-4">Ver Demonstração</a>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

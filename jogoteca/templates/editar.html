@@ -1,0 +1,41 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<form method="post" action="{{url_for('jogo.editar', id=jogo.id) }}"
+  class="formulario">
+  <fieldset>
+    <div class="form-group">
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" name="nome" value="{{ jogo.nome }}"
+        class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="ano">Ano</label>
+      <input type="text" id="ano" name="ano" value="{{ jogo.ano }}"
+        class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="desenvolvedora">Desenvolvedora</label>
+      <input type="text" id="desenvolvedora" name="desenvolvedora"
+        value="{{ jogo.desenvolvedora }}"
+        class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="genero">Genero</label>
+      <input type="text" id="genero" name="genero"
+        value="{{ jogo.desenvolvedora }}" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="plataforma">Plataforma</label>
+      <input type="text" id="plataforma" name="plataforma"
+        value="{{ jogo.plataforma }}" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="url_capa">Capa</label>
+      <input type="text" id="url_capa" name="url_capa"
+        value="{{ jogo.capa }}" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary btn-salvar">Salvar</button>
+  </fieldset>
+</form>
+{% endblock %}
