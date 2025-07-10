@@ -1,0 +1,87 @@
+body {
+    padding-top: 10px;
+}
+
+.btn {
+    margin-bottom: 10px;
+}
+
+.container {
+    border-radius: 4px;
+    margin: auto;
+    width: 80%;
+}
+
+.little-container {
+    width: 40%;
+    margin: auto;
+}
+
+figcaption {
+    text-align: center;
+    margin: 3px auto;
+}
+
+.fileContainer {
+    overflow: hidden;
+    position: relative;
+}
+
+.fileContainer [type=file] {
+    cursor: pointer;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+
+td {
+    text-align: center;
+}
+
+.formularioJogo {
+    display: flex;
+}
+
+.formularioImagem {
+    margin-right: 16px
+}
+
+.buttons {
+    margin-top: 16px
+}
+
+.inputBox {
+    width: 700px;
+}
+
+.inputsJogo {
+    width: 100%;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+
+/* Estilos para a lista de jogos */
+.hover-elevation {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.hover-elevation:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* Tamanho padrão para as imagens dos cards */
+.card-img-top {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    object-position: center;
+    background: #f8f9fa;
+}

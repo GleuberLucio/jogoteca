@@ -2,7 +2,20 @@
 {% block conteudo %}
 
 <form method="post" action="{{url_for('jogo.editar', id=jogo.id) }}"
-  class="formulario">
+  class="formulario" enctype="multipart/form-data">
+
+  <figure class="img-thumbnail col-md-4">
+    <img src="{{ url_for('jogo.imagem', nome_arquivo=capa_jogo) }}"
+      class="img-fluid">
+    <figcaption>
+      <label class="fileContainer">
+        Mudar Capa
+        <input type="file" name="arquivo"
+          accept=".jpg, .jpeg, .png, .gif, .webp, .bmp">
+      </label>
+    </figcaption>
+  </figure>
+
   <fieldset>
     <div class="form-group">
       <label for="nome">Nome</label>
@@ -23,7 +36,7 @@
     <div class="form-group">
       <label for="genero">Genero</label>
       <input type="text" id="genero" name="genero"
-        value="{{ jogo.desenvolvedora }}" class="form-control">
+        value="{{ jogo.genero }}" class="form-control">
     </div>
     <div class="form-group">
       <label for="plataforma">Plataforma</label>

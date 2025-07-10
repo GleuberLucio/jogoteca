@@ -1,3 +1,4 @@
+import os
 
 class Config:
     """Configurações gerais da aplicação."""
@@ -17,3 +18,4 @@ class Config:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SESSION_COOKIE_NAME = 'session_cookie'
+    UPLOADS_PATH = os.path.dirname(os.path.abspath(__file__)) + '/jogoteca/uploads'

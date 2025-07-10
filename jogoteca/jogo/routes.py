@@ -1,6 +1,5 @@
-from flask import Blueprint, render_template, request, redirect, session, flash, url_for
-from .controllers import get_jogos, novo_jogo, get_jogo_by_id, atualizar_jogo, excluir_jogo
-
+from flask import Blueprint, render_template, request, redirect, session, flash, url_for, send_from_directory, jsonify
+from .controllers import *
 
 bp_jogo = Blueprint('jogo', __name__)
 
@@ -14,9 +13,6 @@ def index():
 
 @bp_jogo.route('/novo')
 def novo():
-    # if 'usuario' not in session:
-    #     flash('Você precisa fazer login para acessar esta página.')
-    #     return redirect(url_for('login', proxima=url_for("jogo.novo")))
     
     return render_template('novo.html', titulo='Novo Jogo')
 
@@ -28,7 +24,9 @@ def criar():
     genero = request.form['genero']
     plataforma = request.form['plataforma']
 
-    novo_jogo(nome, ano, desenvolvedora, genero, plataforma)
+    novo_jogo = criar_novo_jogo(nome, ano, desenvolvedora, genero, plataforma)
+    arquivo = request.files['arquivo']
+    salvar_capa_jogo(arquivo, novo_jogo)
     
     return redirect(url_for('jogo.index'))
 
@@ -43,9 +41,11 @@ def editar(id):
         genero = request.form['genero']
         plataforma = request.form['plataforma']
         capa = request.form['url_capa'] 
+        arquivo = request.files['arquivo']
 
         try:
             atualizar_jogo(id, nome, ano, desenvolvedora, genero, plataforma, capa)
+            salvar_capa_jogo(arquivo, jogo)
             flash('Jogo atualizado com sucesso!')
             return redirect(url_for('jogo.index'))
         except ValueError as e:
@@ -56,7 +56,9 @@ def editar(id):
         flash('Jogo não encontrado.')
         return redirect(url_for('jogo.index'))
     
-    return render_template('editar.html', titulo='Editar Jogo', jogo=jogo)
+    capa_jogo = buscar_capa_jogo(jogo.id)
+    
+    return render_template('editar.html', titulo='Editar Jogo', jogo=jogo, capa_jogo=capa_jogo)
 
 @bp_jogo.route('/excluir/id=<int:id>', methods=['POST'])
 def excluir(id):
@@ -67,3 +69,27 @@ def excluir(id):
         flash(str(e))
     
     return redirect(url_for('jogo.index'))
+
+@bp_jogo.route('/uploads/<nome_arquivo>')
+def imagem(nome_arquivo):
+    return send_from_directory('uploads', nome_arquivo)
+
+@bp_jogo.route('/filtrar/<plataforma>')
+def filtro_plataforma(plataforma):
+    print(f'Plataforma: {plataforma}')
+    jogos_filtrados = filtrar_por_plataforma(plataforma)
+    return jsonify({
+        'success': True,
+        'jogos': jogos_filtrados,
+        'total': len(jogos_filtrados)
+    })
+
+@bp_jogo.route('/api/jogos')
+def api_jogos():
+    """Retorna todos os jogos em formato JSON"""
+    jogos = get_jogos()
+    return jsonify({
+        'success': True,
+        'jogos': jogos,
+        'total': len(jogos)
+    })
